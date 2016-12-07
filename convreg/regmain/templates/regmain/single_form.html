@@ -1,0 +1,136 @@
+{% extends "base.html" %}
+
+{% block title %}Registration Form{% endblock %}
+
+{% block main_content %}
+<div class="convreg-header" id="content" tabindex="-1">
+	<div class="container">
+		<div class="row">
+			<h1>Convention Registration</h1>
+			<p>Registration form integrated with ROCK RMS.</p>
+		</div>
+	</div>
+</div>
+
+<div class="container convreg-container">
+	<div class="row">
+		<div class="col-md-9">
+			<div class="row">
+				<h1>Family Info</h1>
+			</div>
+
+			<div class="row">
+				<div class="col-sm-4">
+					<label>Search ROCK</label>
+				</div>
+				<div class="col-sm-4">
+					<input type="text" name="txt_rock_family_name"
+								 id="txt_rock_family_name" />
+				</div>
+				<div class="col-sm-2">
+					<input type="button" name="btn_rock_family_name"
+								 value="Search" id="btn_rock_family_name" />
+				</div>
+			</div>
+
+			<div class="row">
+				<h3>New Family Info</h3>
+				<div class="col-sm-4">
+					<label>Name</label>
+				</div>
+				<div class="col-sm-4">
+					<input type="text" name="txt_family_name"
+								 id="txt_family_name"/>
+				</div>
+				<div class="col-sm-4">
+					<input type="button" value="Create"
+								 id="btn_family_name" />
+				</div>
+			</div>
+
+		</div>
+	</div>
+
+	<div class="row">
+		<div class="col-md-9">
+			<div class="row">
+				<h1>Persons</h1>
+			</div>
+
+			<div class="row">
+				<div class="col-sm-4">
+					<input type="button" value="Add Person"
+								 id="btn_add_person_html" />
+				</div>
+			</div>
+
+			<div class="row" id="html_add_person_sec">
+			</div>
+		</div>
+	</div>
+
+	<div class="row">
+		<div class="col-sm-4">
+			<h1>Airpot Info</h1>
+		</div>
+		<div class="col-sm-4">
+			<button type="button" id="add_airport_btn" class="btn btn-primary">Add Airport Details</button>			
+		</div>
+	</div>
+	
+
+	<div class="row"  id="html_add_airport">
+		
+	</div>
+
+	<div class="row">
+		<div class="col-sm-4">
+			<h1>Contact Info</h1>
+		</div>
+		<div class="col-sm-4">
+			<button type="button" id="add_contact_btn" class="btn btn-primary">ADD Contact Details</button>
+		</div>
+	</div>	
+
+	<div class="row" id="html_add_contact">
+		
+	</div>
+	
+</div>
+
+{% load staticfiles %}
+<script type="text/javascript" src={% static "regmain/base.js" %}>
+</script>
+<script type="text/javascript" src={% static "regmain/person.js" %}>
+</script>
+<script type="text/javascript" src={% static "regmain/model_church.js" %}>
+</script>
+<script type="text/javascript" src={% static "regmain/AirportInfo.js" %}>
+</script>
+<script type="text/javascript" src={% static "regmain/contact.js" %}>
+</script>
+{% endblock %}
+
+
+
+{% comment %}
+	<div class="row">
+		<div class="col-md-9"> 
+			<div class="row">
+				<h1>Church Info</h1>	
+			</div>
+		</div>
+	</div>
+
+		<div class="row">
+			<div class="col-sm-4">
+				<label>Name</label>
+			</div>
+			<div class="col-sm-2">
+				<input type="text" name="church" id="id_church_name">
+			</div>
+			<div class="col-sm-2">
+				<input type="button" value="Add Church" id="id_church_btn">
+			</div>
+		</div>
+{% endcomment %}
