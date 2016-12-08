@@ -2,6 +2,7 @@
 
 var TMPL_PERSON = '' +
 		'<div class="row">' +
+		
 		'  <div class="row">' +
 		'    <div class="col-sm-4">' +
 		'      <label>First Name</label>' +
@@ -11,13 +12,21 @@ var TMPL_PERSON = '' +
 		'             class="txt_first_name" />' +
 		'    </div>' +
 		'  </div>' +
+		
+		'  <div class="row">' +
+		'		<div class="col-sm-4">' +
+		'      	<label>Airport Info</label>'+
+		'    	</div>' + 
+		'		<div class="col-sm-4">' +
+		'		<input type="button" value="Add Airport Info" id="add_airport_btn"/>' +     
+		'    	</div>' + 
+		'  </div>' +
+		' <div class="row" id="html_add_airport"> </div>'+
 		'  <div class="row">' +
 		'    <div class="col-sm-4">' +
-		'      <input type="button" value="Submit" ' +
-		'             class="btn_person_submit"/>' +
+		'      <input type="button" value="Submit" class="btn_person_submit"/>' +
 		'    </div>' +
-		'  </div>' +
-		'  <div class="church-container"></div>' +
+		'  </div>' +		
 		'</div>'
 
 var Person = function(family_id) {
@@ -35,6 +44,7 @@ var Person = function(family_id) {
 		this.container = null;
 		this.html_node = $(TMPL_PERSON)[0];
 
+		this.add_airport_btn = null;
 		this.txt_first_name = null;
 		this.btn_submit = null;
 }

@@ -85,7 +85,8 @@ Contact.prototype.submit = function(){
 	if( this.container == null){
 		return false;
 	}
-	update_values_from_form();
+	p = this;
+	this.update_values_from_field();
 	$.ajax({
 		url: "/regmain/add_contact_info/",
 		data: {										
@@ -98,14 +99,14 @@ Contact.prototype.submit = function(){
 		dataType: "json",
 	}).done(function(json)
 	{
-		this.process_response(json);
+		p.process_response(json);
 	});
 	return true;
 }	
 
-Person.prototype.update_values_from_form = function() {
+Contact.prototype.update_values_from_field = function() {
 	if (this.container === null) {
-			return false;
+		return false;
 	}
 	this.address = this.address_id.value;
 	this.cell = this.cell_phone_id.value;

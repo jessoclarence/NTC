@@ -79,7 +79,8 @@ Airport.prototype.bind_all = function(){
 	this.datetime_id = $(this.html_node).find('#datetime')[0];
 	this.luggages_id = $(this.html_node).find('#luggages')[0];
 	this.btn_submit = $("#call_submit");
-	$(this.btn_submit).click(function(){this.submit();});
+	p = this;
+	$(this.btn_submit).click(function(){p.submit();});
 	return true;
 }
 
@@ -87,7 +88,8 @@ Airport.prototype.submit = function(){
 	if (this.container === null) {
 		return false;
 	}	
-	update_form_fields();
+	p = this;
+	this.update_form_fields();
 	$.ajax({
 		url: "/regmain/airport_info/",
 			data: {														
@@ -100,7 +102,7 @@ Airport.prototype.submit = function(){
 			type: "POST",
 			dataType: "json",				
 	}).done(function(json){
-		this.process_response(json);
+		p.process_response(json);
 	});
 	return true;
 }	
@@ -123,13 +125,17 @@ Airport.prototype.process_response = function(json){
 	this.airline = json.airline;
 	this.datetime = json.datetime;
 	this.luggages = json.luggages;
-	update_html_form();
+	this.update_html_form();
 }
 
 Airport.prototype.update_html_form = function(){
+	if(this.container == null){
+		return false;
+	}
 	this.flow_type_id.value = this.flow_type;
 	this.airline_id.value = this.airline;
 	this.airport_code_id.value = this.airport_code;
 	this.datetime_id.value = this.datetime;
 	this.luggages_id.value = this.luggages;
+	return true;
 }

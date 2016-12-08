@@ -37,6 +37,7 @@ def add_contact_info(request):
         return shortcuts.render(
             request, 'regmain/add_contact_info.html', context)
     if request.method == 'POST':
+        return http.JsonResponse({'address' : 'address'})
         address = request.POST.get('address')
         cell_phone = request.POST.get('cell_phone')
         email = request.POST.get('email')
