@@ -159,14 +159,15 @@ Person.prototype.bind_inputs = function() {
 		p = this;
 		x = this;
 		y = this;
-		$(this.vol_type_id).on("click",function(){			
-			if(p.vol_type_id.value == 'Worker' || p.vol_type_id.value == 'Volunteer'){							
-				p.voluter_type();
+		z = this;
+		$(y.add_airport_btn).on("click",function(){y.add_airport_html();});
+		$(x.vol_type_id).on("click",function(){			
+			if(x.vol_type_id.value == 'Worker' || x.vol_type_id.value == 'Volunteer'){							
+				x.voluter_type();
 			}
 		});
-		$(this.btn_submit).on("click",function(){p.submit();});
-		$(this.add_airport_btn).on("click",function(){x.add_airport_html();});
-		$(this.add_contact_btn).on("click",function(){y.add_contact_html();});
+		$(p.btn_submit).on("click",function(){p.submit();});		
+		$(z.add_contact_btn).on("click",function(){z.add_contact_html();});
 }
 
 

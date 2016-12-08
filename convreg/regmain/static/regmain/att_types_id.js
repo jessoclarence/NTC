@@ -1,4 +1,4 @@
-var Ht = ''+
+var HTT = ''+
 		'<div class="row">' +
 		
 		'  <div class="row">' +
@@ -15,7 +15,7 @@ var Ht = ''+
 var Attendance = function(){
 	this.id = null;
 	this.name = "";
-	this.html_node = $(Ht)[0];
+	this.html_node = $(HTT)[0];
 }
 
 
