@@ -34,7 +34,7 @@ var HT = ''+
 		' </div>'+				
 		'<div class="row">'+
 		'<div class="col-sm-4">'+
-		'<button type="button" id = "call_submit" class="btn btn-primary" name ="submit">Add Contact</button>'+		
+		'<button type="button" id = "call_submit" name ="submit">Add Contact</button>'+		
 		'</div>'+
 		'</div>'+
 		'</div>'	

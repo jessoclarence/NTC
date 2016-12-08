@@ -24,19 +24,19 @@ var person_list = [];
 function do_onload() {	
 		$(sel_btn_family_name).on("click", add_family_submit);
 		$(sel_btn_add_person_html).on("click", add_person_html);
-		$(sel_add_airport_btn).on("click",add_airport_html);
-		$(sel_add_contact_btn).on("click",add_contact_html);
+		//$(sel_add_airport_btn).on("click",add_airport_html);
+		//$(sel_add_contact_btn).on("click",add_contact_html);
 }
 
-function add_airport_html(){
-	airport = new Airport();
-	airport.render(html_add_airport);
-}
+//function add_airport_html(){
+//	airport = new Airport();
+//	airport.render(html_add_airport);
+//}
 
-function add_contact_html(){
-	contact = new Contact();
-	contact.render(html_add_contact);
-}
+//function add_contact_html(){
+//	contact = new Contact();
+//	contact.render(html_add_contact);
+//}
 
 
 function add_person_html() {

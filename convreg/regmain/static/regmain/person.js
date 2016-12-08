@@ -21,7 +21,20 @@ var TMPL_PERSON = '' +
 		'		<input type="button" value="Add Airport Info" id="add_airport_btn"/>' +     
 		'    	</div>' + 
 		'  </div>' +
-		' <div class="row" id="html_add_airport"> </div>'+
+
+		' <div class="row" id="html_add_airport"></div>'+
+
+		'  <div class="row">' +
+		'		<div class="col-sm-4">' +
+		'      	<label>Contact Info</label>'+
+		'    	</div>' + 
+		'		<div class="col-sm-4">' +
+		'		<input type="button" id="add_contact_btn" value="Contact Info">'+
+		'    	</div>' + 
+		'  </div>' +
+
+		' <div class="row" id="html_contact_info"></div>'+	
+
 		'  <div class="row">' +
 		'    <div class="col-sm-4">' +
 		'      <input type="button" value="Submit" class="btn_person_submit"/>' +
@@ -44,7 +57,12 @@ var Person = function(family_id) {
 		this.container = null;
 		this.html_node = $(TMPL_PERSON)[0];
 
+		var html_contact_info = null;
+		this.add_contact_btn = null;
+
+		var html_add_airport = null;
 		this.add_airport_btn = null;
+		
 		this.txt_first_name = null;
 		this.btn_submit = null;
 }
@@ -52,7 +70,6 @@ var Person = function(family_id) {
 Person.prototype.render = function(container) {
 		this.container = container;
 		container.appendChild(this.html_node);
-
 		this.bind_inputs();
 }
 
@@ -104,12 +121,33 @@ Person.prototype.bind_inputs = function() {
 
 		this.txt_first_name = $(this.html_node).find(
 				'input.txt_first_name')[0];
+
+		html_add_airport = $(this.html_node).find(
+				'#html_add_airport')[0];
+		this.add_airport_btn = $(this.html_node).find(
+				'#add_airport_btn')[0];
+
+		html_contact_info = $(this.html_node).find(
+				'#html_contact_info')[0];
+		this.add_contact_btn = $(this.html_node).find(
+				'#add_contact_btn')[0];
+
 		this.btn_submit = $(this.html_node).find(
 				'input.btn_person_submit')[0];
-
+		
 		p = this;
 		$(this.btn_submit).on("click", function(){p.submit();});
-
-		return true;
+		$(this.add_airport_btn).on("click",function(){add_airport_html()});
+		$(this.add_contact_btn).on("click",function(){add_contact_html();});
 }
 
+
+function add_airport_html(){
+	airport = new Airport();	
+	airport.render(html_add_airport);
+}
+
+function add_contact_html(){
+	contact = new Contact();
+	contact.render(html_contact_info);
+}

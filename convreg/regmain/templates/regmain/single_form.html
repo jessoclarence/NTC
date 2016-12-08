@@ -64,21 +64,20 @@
 				</div>
 			</div>
 
-			<div class="row" id="html_add_person_sec">
+			<div class="row" id="html_add_person_sec">												
 			</div>
 		</div>
+		</div>
+
 	</div>
 
-
+{% comment %}
 	<div class="row">
 		<div class="col-sm-4">
 			<h1>Airpot Info</h1>
 		</div>
-		<div class="col-sm-4">
-			<button type="button" id="add_airport_btn" class="btn btn-primary">Add Airport Details</button>			
-		</div>
+	
 	</div>
-
 
 	<div class="row"  id="html_add_airport">
 		
@@ -89,26 +88,26 @@
 			<h1>Contact Info</h1>
 		</div>
 		<div class="col-sm-4">
-			<button type="button" id="add_contact_btn" class="btn btn-primary">ADD Contact Details</button>
+			<input type="button" id="add_contact_btn" value="Contact Info">
 		</div>
 	</div>	
 
 	<div class="row" id="html_add_contact">
 		
 	</div>
-	
+{% endcomment %}	
 </div>
 
 {% load staticfiles %}
 <script type="text/javascript" src={% static "regmain/base.js" %}>
-</script>
-<script type="text/javascript" src={% static "regmain/AirportInfo.js" %}>
 </script>
 <script type="text/javascript" src={% static "regmain/person.js" %}>
 </script>
 <script type="text/javascript" src={% static "regmain/model_church.js" %}>
 </script>
 <script type="text/javascript" src={% static "regmain/contact.js" %}>
+</script>
+<script type="text/javascript" src={% static "regmain/AirportInfo.js" %}>
 </script>
 {% endblock %}
 
