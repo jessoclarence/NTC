@@ -57,10 +57,10 @@ var Person = function(family_id) {
 		this.container = null;
 		this.html_node = $(TMPL_PERSON)[0];
 
-		var html_contact_info = null;
+		this.html_contact_info = null;
 		this.add_contact_btn = null;
 
-		var html_add_airport = null;
+		this.html_add_airport = null;
 		this.add_airport_btn = null;
 		
 		this.txt_first_name = null;
@@ -122,12 +122,12 @@ Person.prototype.bind_inputs = function() {
 		this.txt_first_name = $(this.html_node).find(
 				'input.txt_first_name')[0];
 
-		html_add_airport = $(this.html_node).find(
+		this.html_add_airport = $(this.html_node).find(
 				'#html_add_airport')[0];
 		this.add_airport_btn = $(this.html_node).find(
 				'#add_airport_btn')[0];
 
-		html_contact_info = $(this.html_node).find(
+		this.html_contact_info = $(this.html_node).find(
 				'#html_contact_info')[0];
 		this.add_contact_btn = $(this.html_node).find(
 				'#add_contact_btn')[0];
@@ -136,18 +136,20 @@ Person.prototype.bind_inputs = function() {
 				'input.btn_person_submit')[0];
 		
 		p = this;
+		x = this;
+		y = this;
 		$(this.btn_submit).on("click", function(){p.submit();});
-		$(this.add_airport_btn).on("click",function(){add_airport_html()});
-		$(this.add_contact_btn).on("click",function(){add_contact_html();});
+		$(this.add_airport_btn).on("click",function(){x.add_airport_html();});
+		$(this.add_contact_btn).on("click",function(){y.add_contact_html();});
 }
 
 
-function add_airport_html(){
+Person.prototype.add_airport_html = function(){
 	airport = new Airport();	
-	airport.render(html_add_airport);
+	airport.render(this.html_add_airport);
 }
 
-function add_contact_html(){
+Person.prototype.add_contact_html = function(){
 	contact = new Contact();
-	contact.render(html_contact_info);
+	contact.render(this.html_contact_info);
 }
