@@ -2,7 +2,7 @@
 
 var TMPL_PERSON = '' +
 		'<div class="row">' +
-		
+
 		'  <div class="row">' +
 		'    <div class="col-sm-4">' +
 		'      <label>First Name</label>' +
@@ -12,14 +12,14 @@ var TMPL_PERSON = '' +
 		'             class="txt_first_name" />' +
 		'    </div>' +
 		'  </div>' +
-		
+
 		'  <div class="row">' +
 		'		<div class="col-sm-4">' +
 		'      	<label>Airport Info</label>'+
-		'    	</div>' + 
+		'    	</div>' +
 		'		<div class="col-sm-4">' +
-		'		<input type="button" value="Add Airport Info" id="add_airport_btn"/>' +     
-		'    	</div>' + 
+		'		<input type="button" value="Add Airport Info" id="add_airport_btn"/>' +
+		'    	</div>' +
 		'  </div>' +
 
 		' <div class="row" id="html_add_airport"></div>'+
@@ -27,32 +27,32 @@ var TMPL_PERSON = '' +
 		'  <div class="row">' +
 		'		<div class="col-sm-4">' +
 		'      	<label>Contact Info</label>'+
-		'    	</div>' + 
+		'    	</div>' +
 		'		<div class="col-sm-4">' +
 		'		<input type="button" id="add_contact_btn" value="Contact Info">'+
-		'    	</div>' + 
+		'    	</div>' +
 		'  </div>' +
 
-		' <div class="row" id="html_contact_info"></div>'+	
+		' <div class="row" id="html_contact_info"></div>'+
 
 		'  <div class="row">' +
 		'		<div class="col-sm-4">' +
 		'      	<label>Attendance Type</label>'+
-		'    	</div>' + 
+		'    	</div>' +
 		'		<div class="col-sm-4">' +
 		'		<select id = "vol_type_id">'+
 		'		<option value="Normal">Normal</option>'+
 		'		<option value="Worker">Worker</option>'+
 		'		<option value="Volunteer">Volunteer</option>'+
 		'		</select>'+
-		'    	</div>' + 				
+		'    	</div>' +
 		'		<div class="col-sm-4" id="html_att_type"> </div>'+
 		'  </div>' +
 		'  <div class="row">' +
 		'    <div class="col-sm-4">' +
 		'      <input type="button" value="Submit" class="btn_person_submit"/>' +
 		'    </div>' +
-		'  </div>' +		
+		'  </div>' +
 		'</div>'
 
 var Person = function(family_id) {
@@ -75,12 +75,14 @@ var Person = function(family_id) {
 
 		this.html_add_airport = null;
 		this.add_airport_btn = null;
-		
+
 		this.txt_first_name = null;
 		this.btn_submit = null;
 
 		this.html_att_type = null;
 		this.vol_type_id = null;
+
+		this.me = this;
 }
 
 Person.prototype.render = function(container) {
@@ -108,7 +110,7 @@ Person.prototype.update_html_fields = function() {
 		this.txt_first_name.value = this.first_name;
 }
 
-Person.prototype.submit = function() {		
+Person.prototype.submit = function() {
 		if (this.container === null) {
 				return false;
 		}
@@ -150,29 +152,33 @@ Person.prototype.bind_inputs = function() {
 
 		this.btn_submit = $(this.html_node).find(
 				'input.btn_person_submit')[0];
-		
+
 		this.vol_type_id = $(this.html_node).find(
-				'#vol_type_id')[0];															
+				'#vol_type_id')[0];
 		this.html_att_type = $(this.html_node).find(
 				'#html_att_type')[0];
 
-		p = this;
-		x = this;
-		y = this;
-		z = this;
-		$(y.add_airport_btn).on("click",function(){y.add_airport_html();});
-		$(x.vol_type_id).on("click",function(){			
-			if(x.vol_type_id.value == 'Worker' || x.vol_type_id.value == 'Volunteer'){							
-				x.voluter_type();
-			}
-		});
-		$(p.btn_submit).on("click",function(){p.submit();});		
-		$(z.add_contact_btn).on("click",function(){z.add_contact_html();});
+		var p = this;
+		var add_airport_fn = function() { p.add_airport_html(); }
+		var add_contact_fn = function() { p.add_contact_html(); }
+
+		$(this.add_airport_btn).on("click", add_airport_fn);
+		$(this.vol_type_id).on(
+				"click",
+				function() {
+						if(p.vol_type_id.value == 'Worker' ||
+							 p.vol_type_id.value == 'Volunteer'){
+								p.volunteer_type();
+						}
+				});
+		$(this.btn_submit).on("click", function() { p.submit(); });
+
+		$(this.add_contact_btn).on("click", add_contact_fn);
 }
 
 
 Person.prototype.add_airport_html = function(){
-	airport = new Airport();	
+	airport = new Airport();
 	airport.render(this.html_add_airport);
 }
 
@@ -181,7 +187,7 @@ Person.prototype.add_contact_html = function(){
 	contact.render(this.html_contact_info);
 }
 
-Person.prototype.voluter_type = function(){
+Person.prototype.volunteer_type = function(){
 	vol = new Attendance();
 	vol.render(this.html_att_type);
 }
