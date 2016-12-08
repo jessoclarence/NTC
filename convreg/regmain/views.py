@@ -108,7 +108,7 @@ def airport_info(request):
         x = models.AirportInfo(flow_type = flow_type,airport_code = airport_code,
                         airline = airline,datetime = datetime,luggages = luggages)
         x.save()
-        return http.HttpResponse("ThankYou")
+        return http.JsonResponse(x.to_dict())
 
 
 @csrf.csrf_exempt

@@ -67,6 +67,7 @@ class ContactInfo(models.Model):
     def to_dict(self):
         return {
             'id': self.id,
+            'cell_phone' : self.cell_phone,
             'address': self.address,
             'email': self.email,
             'telephone': self.telephone,
@@ -88,6 +89,15 @@ class AirportInfo(models.Model):
 
     def __unicode__(self):
         return '%s-%s' % self.id
+    
+    def to_dict(self):
+        return {
+        'id' : self.id,
+        'flow_type' : self.flow_type,
+        'airport_code' : self.airport_code,
+        'airline' : self.airline,
+        'datetime' : self.datetime,
+        'luggages' : self.luggages,}       
 
 
 class Transport(models.Model):
