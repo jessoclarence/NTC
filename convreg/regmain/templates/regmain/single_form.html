@@ -67,36 +67,23 @@
 			<div class="row" id="html_add_person_sec">												
 			</div>
 		</div>
-		</div>
-
 	</div>
 
-{% comment %}
 	<div class="row">
 		<div class="col-sm-4">
-			<h1>Airpot Info</h1>
+			<h1>Church</h1>
+		</div>
+	</div>		
+		<div class="row">
+			<select>
+			{% for i in churches %}
+				<option>{{i}}</option>
+			{% endfor %}
+			</select>
 		</div>
 	
-	</div>
-
-	<div class="row"  id="html_add_airport">
-		
-	</div>
-
-	<div class="row">
-		<div class="col-sm-4">
-			<h1>Contact Info</h1>
-		</div>
-		<div class="col-sm-4">
-			<input type="button" id="add_contact_btn" value="Contact Info">
-		</div>
-	</div>	
-
-	<div class="row" id="html_add_contact">
-		
-	</div>
-{% endcomment %}	
 </div>
+
 
 {% load staticfiles %}
 <script type="text/javascript" src={% static "regmain/base.js" %}>
@@ -108,6 +95,8 @@
 <script type="text/javascript" src={% static "regmain/contact.js" %}>
 </script>
 <script type="text/javascript" src={% static "regmain/AirportInfo.js" %}>
+</script>
+<script type="text/javascript" src={% static "regmain/att_types_id.js" %}>
 </script>
 {% endblock %}
 
@@ -133,4 +122,48 @@
 				<input type="button" value="Add Church" id="id_church_btn">
 			</div>
 		</div>
+{% endcomment %}
+
+
+{% comment %}
+	<div class="row">
+		<div class="col-sm-4">
+			<h1>Airpot Info</h1>
+		</div>
+	
+	</div>
+
+	<div class="row"  id="html_add_airport">
+		
+	</div>
+
+	<div class="row">
+		<div class="col-sm-4">
+			<h1>Contact Info</h1>
+		</div>
+		<div class="col-sm-4">
+			<input type="button" id="add_contact_btn" value="Contact Info">
+		</div>
+	</div>	
+
+	<div class="row" id="html_add_contact">
+		
+	</div>
+
+
+	<div class="row">
+		<div class="col-sm-4">
+			<h1>Attendance</h1>
+		</div>
+	</div>		
+		<div class="row">
+			<div class="col-sm-4">
+			<select>
+			{% for i in att_types %}
+				<option id="att_types_id" >{{i}}</option>
+			{% endfor %}
+			</select>
+			</div>
+			<div class="col-sm-4" id="vol_types_id"></div>
+		</div>		
 {% endcomment %}

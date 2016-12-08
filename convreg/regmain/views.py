@@ -10,6 +10,12 @@ from regmain import models
 def single_form(request):
     context = {}
     if request.method == 'GET':
+        churches = models.Church.objects.all()
+        context['churches'] = [c for c in churches]
+        att_types = models.AttendantType.objects.all()
+        vol_types = models.VolunteerType.objects.all()
+        context['att_types'] = [a for a in att_types]
+        context['vol_types'] = [a for a in vol_types]
         return shortcuts.render(
             request, 'regmain/single_form.html', context)
 
@@ -36,8 +42,7 @@ def add_contact_info(request):
     if request.method == 'GET':
         return shortcuts.render(
             request, 'regmain/add_contact_info.html', context)
-    if request.method == 'POST':
-        return http.JsonResponse({'address' : 'address'})
+    if request.method == 'POST':        
         address = request.POST.get('address')
         cell_phone = request.POST.get('cell_phone')
         email = request.POST.get('email')

@@ -125,6 +125,7 @@ Airport.prototype.process_response = function(json){
 	this.airline = json.airline;
 	this.datetime = json.datetime;
 	this.luggages = json.luggages;
+	this.id = json.id;
 	this.update_html_form();
 }
 

@@ -36,6 +36,19 @@ var TMPL_PERSON = '' +
 		' <div class="row" id="html_contact_info"></div>'+	
 
 		'  <div class="row">' +
+		'		<div class="col-sm-4">' +
+		'      	<label>Attendance Type</label>'+
+		'    	</div>' + 
+		'		<div class="col-sm-4">' +
+		'		<select id = "vol_type_id">'+
+		'		<option value="Normal">Normal</option>'+
+		'		<option value="Worker">Worker</option>'+
+		'		<option value="Volunteer">Volunteer</option>'+
+		'		</select>'+
+		'    	</div>' + 				
+		'		<div class="col-sm-4" id="html_att_type"> </div>'+
+		'  </div>' +
+		'  <div class="row">' +
 		'    <div class="col-sm-4">' +
 		'      <input type="button" value="Submit" class="btn_person_submit"/>' +
 		'    </div>' +
@@ -65,6 +78,9 @@ var Person = function(family_id) {
 		
 		this.txt_first_name = null;
 		this.btn_submit = null;
+
+		this.html_att_type = null;
+		this.vol_type_id = null;
 }
 
 Person.prototype.render = function(container) {
@@ -92,7 +108,7 @@ Person.prototype.update_html_fields = function() {
 		this.txt_first_name.value = this.first_name;
 }
 
-Person.prototype.submit = function() {
+Person.prototype.submit = function() {		
 		if (this.container === null) {
 				return false;
 		}
@@ -135,10 +151,20 @@ Person.prototype.bind_inputs = function() {
 		this.btn_submit = $(this.html_node).find(
 				'input.btn_person_submit')[0];
 		
+		this.vol_type_id = $(this.html_node).find(
+				'#vol_type_id')[0];															
+		this.html_att_type = $(this.html_node).find(
+				'#html_att_type')[0];
+
 		p = this;
 		x = this;
 		y = this;
-		$(this.btn_submit).on("click", function(){p.submit();});
+		$(this.vol_type_id).on("click",function(){			
+			if(p.vol_type_id.value == 'Worker' || p.vol_type_id.value == 'Volunteer'){							
+				p.voluter_type();
+			}
+		});
+		$(this.btn_submit).on("click",function(){p.submit();});
 		$(this.add_airport_btn).on("click",function(){x.add_airport_html();});
 		$(this.add_contact_btn).on("click",function(){y.add_contact_html();});
 }
@@ -152,4 +178,9 @@ Person.prototype.add_airport_html = function(){
 Person.prototype.add_contact_html = function(){
 	contact = new Contact();
 	contact.render(this.html_contact_info);
+}
+
+Person.prototype.voluter_type = function(){
+	vol = new Attendance();
+	vol.render(this.html_att_type);
 }
